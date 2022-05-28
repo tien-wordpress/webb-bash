@@ -4,6 +4,7 @@ init_wpcli(){
   php wp-cli.phar --info
   chmod +x wp-cli.phar
   sudo mv wp-cli.phar /usr/local/bin/wp
+  read -p "" fackEnterKey
 }
 
 add_wpsite(){
