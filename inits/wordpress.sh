@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 import util/type
 import util/variable
+import String/UUID
 
 init_wpcli(){
   curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -36,13 +37,27 @@ add_wpsite_ubuntu(){
   dbpass=`echo "${dbpass}" | head -1`
   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
 
+  admin_password=$(String::GenerateUUID)
+  admin_user="webb.vn"
   DB="${DOMAIN/\./_}_db"
   domainPath=/usr/local/lsws/$DOMAIN
+
+  printf "---\n"
+  printf "domain: $DOMAIN\n"
+  printf "admin_user: $admin_user\n"
+  printf "admin_password: $admin_password\n"
+  printf "---\n"
+  printf "dbuser: $dbuser\n"
+  printf "dbpass: $dbpass\n"
+  printf "DB: $DB\n"
+  printf "domainPath: $domainPath\n"
+
   rm -rf $domainPath
   mkdir -p $domainPath/{conf,html,logs}
   wp core download --path=$domainPath/html --locale=en_US --allow-root; cd $domainPath/html
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
+  wp db drop --yes --allow-root
   wp db create --allow-root
-  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=tienwp_asd --admin_password=tienwp_asd --admin_email=tien.wordpress@gmail.com --allow-root
+  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
   read -p "" fackEnterKey
 }
