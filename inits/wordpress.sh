@@ -61,5 +61,7 @@ add_wpsite_ubuntu(){
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+  # sudo chown -R www-data /usr/local/lsws/webb.vn/html/wp-content
+  wp config set FS_METHOD 'direct' --raw --allow-root
   read -p "" fackEnterKey
 }
