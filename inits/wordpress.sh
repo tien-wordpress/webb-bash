@@ -25,6 +25,7 @@ add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
   DB="${DOMAIN/\./_}_db"
   cd /usr/local/lsws
+  mkdir $DOMAIN
   mkdir $DOMAIN/{conf,html,logs}
   wp core download --path=$DOMAIN/html --locale=en_US; cd $DOMAIN/html
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass
