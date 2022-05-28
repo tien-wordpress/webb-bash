@@ -10,8 +10,8 @@ show_menus(){
   clear
   printf "$(UI.Color.Blue)WEBB.VN MENU$(UI.Color.Default)\n"
   printf "\n"
+  printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
   {
-    printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
     printf "1) Init wp-cli\n"
     printf "2) Add wordpress site\n"
     printf "3) Option 3\n"
