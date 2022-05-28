@@ -42,7 +42,7 @@ add_wpsite_ubuntu(){
   DB="${DOMAIN/\./_}_db"
   domainPath=/usr/local/lsws/$DOMAIN
 
-  printf "\n"
+  printf "$(UI.Color.Yellow)IMPORTANT$(UI.Color.Default)\n"
   printf "domain: $DOMAIN \n"
   printf "admin_user: $admin_user \n"
   printf "admin_password: $admin_password \n"
@@ -52,7 +52,7 @@ add_wpsite_ubuntu(){
   printf "DB: $DB \n"
   printf "domainPath: $domainPath \n"
   printf "\n"
-  read -p "Enter to continue" fackEnterKey
+  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)\n" fackEnterKey
   rm -rf $domainPath
   mkdir -p $domainPath/{conf,html,logs}
   wp core download --path=$domainPath/html --locale=en_US --allow-root; cd $domainPath/html
