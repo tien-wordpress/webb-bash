@@ -8,7 +8,7 @@ import inits/wordpress
 show_menus(){
   COLUMNS=$(tput cols)
   clear
-  printf "WEBB.VN MENU\n"
+  printf "$(UI.Color.Blue)WEBB.VN MENU$(UI.Color.Default)\n"
   printf "\n"
   {
     printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
@@ -25,7 +25,7 @@ read_options(){
   read -p "Enter choice: " choice
   case $choice in
     1) init_wpcli;;
-    2) add_wpsite;;
+    2) add_wpsite_ubuntu;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2
   esac
