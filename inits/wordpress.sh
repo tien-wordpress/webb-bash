@@ -42,11 +42,11 @@ add_wpsite_ubuntu(){
   DB="${DOMAIN/\./_}_db"
   domainPath=/usr/local/lsws/$DOMAIN
 
-  printf "--- \n"
+  printf "\n"
   printf "domain: $DOMAIN \n"
   printf "admin_user: $admin_user \n"
   printf "admin_password: $admin_password \n"
-  printf "--- \n"
+  printf "\n"
   printf "dbuser: $dbuser \n"
   printf "dbpass: $dbpass \n"
   printf "DB: $DB \n"
