@@ -1,4 +1,7 @@
 #!/bin/bash
+import util/type
+import util/variable
+
 init_wpcli(){
   curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
   php wp-cli.phar --info
@@ -21,8 +24,18 @@ add_wpsite_macos(){
 
 add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
-  printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
-  printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
+  # printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
+  # printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
+
+  string configTxt=`cat /var/www/html/wp-config.php`
+  string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
+  dbuser=`echo "${dbuser}" | head -1`
+  dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
+
+  string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
+  dbpass=`echo "${dbpass}" | head -1`
+  dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
+
   DB="${DOMAIN/\./_}_db"
   domainPath=/usr/local/lsws/$DOMAIN
   rm -rf $domainPath
