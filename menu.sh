@@ -32,11 +32,11 @@ read_options(){
 }
 
 try {
-while true
-do
-	show_menus
-	read_options
-done
+  while true
+  do
+    show_menus
+    read_options
+  done
 } catch {
     echo "Caught Exception:$(UI.Color.Red) $__BACKTRACE_COMMAND__ $(UI.Color.Default)"
     echo "File: $__BACKTRACE_SOURCE__, Line: $__BACKTRACE_LINE__"

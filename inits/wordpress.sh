@@ -11,8 +11,6 @@ add_wpsite(){
   printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
   printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
   DB="${DOMAIN/\./_}_db"
-  # printf "$DOMAIN $DB"
-  # read -p "" fackEnterKey
   wp core download --path=$DOMAIN --locale=en_US; cd $DOMAIN
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass
   wp db create
