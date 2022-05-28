@@ -41,7 +41,7 @@ add_wpsite_ubuntu(){
   admin_user="webb.vn"
   DB="${DOMAIN/\./_}_db"
   domainPath=/usr/local/lsws/$DOMAIN
-
+  printf "\n"
   printf "$(UI.Color.Yellow)IMPORTANT$(UI.Color.Default)\n"
   printf "domain: $DOMAIN \n"
   printf "admin_user: $admin_user \n"
