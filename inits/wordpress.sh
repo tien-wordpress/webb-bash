@@ -52,7 +52,7 @@ add_wpsite_ubuntu(){
   printf "DB: $DB \n"
   printf "domainPath: $domainPath \n"
   printf "\n"
-  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)\n" fackEnterKey
+  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
   rm -rf $domainPath
   mkdir -p $domainPath/{conf,html,logs}
   wp core download --path=$domainPath/html --locale=en_US --allow-root; cd $domainPath/html
