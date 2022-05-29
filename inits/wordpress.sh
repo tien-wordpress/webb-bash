@@ -64,7 +64,8 @@ add_wpsite_ubuntu(){
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
-  wp plugin install https://downloads.wordpress.org/plugin/elementor.3.6.5.zip --activate --allow-root
+  wp plugin install /var/www/webb-bash/assets/elementor-kit.zip --activate --allow-root
+  wp plugin install /var/www/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
   chmod -R 777 $domainPath/html/wp-content
   read -p "" fackEnterKey
