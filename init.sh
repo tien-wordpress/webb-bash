@@ -1,4 +1,5 @@
 #!/bin/bash
+ufw allow 7080
 rm -rf /var/www/webb-bash;
 
 mkdir -p /var/www;
