@@ -61,7 +61,8 @@ add_wpsite_ubuntu(){
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
-  chown -R www-data $domainPath/html/wp-content
+  chown -R 777 $domainPath/html/wp-content
   read -p "" fackEnterKey
 }
