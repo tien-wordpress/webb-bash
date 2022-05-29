@@ -59,8 +59,8 @@ add_wpsite_ubuntu(){
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
   try {
     wp db drop --yes --allow-root
-    wp db create --allow-root
   } catch {}
+  wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
