@@ -65,6 +65,6 @@ add_wpsite_ubuntu(){
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
-  chown -R 777 $domainPath/html/wp-content
+  chmod -R 777 $domainPath/html/wp-content
   read -p "" fackEnterKey
 }
