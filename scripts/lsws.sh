@@ -4,8 +4,7 @@ get_lsws_info(){
 
   printf "$(UI.Color.Yellow)LSWS info$(UI.Color.Default)\n"
   printf "url: $url\n"
-  printf "user: admin\n"
-  printf "pass: $pass\n"
-  printf "js fix: sendCommand(SecurityInterstitialCommandId.CMD_PROCEED)"
+  printf "$pass\n"
+  printf "sendCommand(SecurityInterstitialCommandId.CMD_PROCEED)"
   read -p "" fackEnterKey
 }
