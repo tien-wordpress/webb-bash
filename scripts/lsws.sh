@@ -7,4 +7,5 @@ get_lsws_info(){
   printf "user: admin\n"
   printf "pass: $pass\n"
   printf "js fix: sendCommand(SecurityInterstitialCommandId.CMD_PROCEED)"
+  read -p "" fackEnterKey
 }
