@@ -4,6 +4,7 @@ import util/log
 import util/tryCatch
 import util/exception
 import inits/wordpress
+import inits/ssl
 
 show_menus(){
   COLUMNS=$(tput cols)
@@ -12,20 +13,25 @@ show_menus(){
   printf "\n"
   printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
   {
-    printf "1) Init wp-cli\n"
-    printf "2) Add wordpress site\n"
-    printf "3) Option 3\n"
-    printf "4) Option 4\n"
-    printf "$(UI.Color.Red)0) Exit$(UI.Color.Default)"
+    printf "11) Init wp-cli\n"
+    printf "12) Add wordpress site\n"
   } | pr -t2 -w "$COLUMNS"
+  printf "$(UI.Color.Yellow)SSL$(UI.Color.Default)\n"
+  {
+    printf "21) Init ssl\n"
+    printf "22) Add ssl site\n"
+  } | pr -t2 -w "$COLUMNS"
+  printf "$(UI.Color.Red)0) Exit$(UI.Color.Default)\n"
 }
 
 
 read_options(){
   read -p "Enter choice: " choice
   case $choice in
-    1) init_wpcli;;
-    2) add_wpsite_ubuntu;;
+    11) init_wpcli;;
+    12) add_wpsite_ubuntu;;
+    21) init_ssl;;
+    22) add_ssl_site;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2
   esac
