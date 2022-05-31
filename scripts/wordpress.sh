@@ -63,7 +63,7 @@ add_wpsite_ubuntu(){
   } catch {}
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
-  wp search-replace "http://$DOMAIN" "https://$DOMAIN"
+  wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
   wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
