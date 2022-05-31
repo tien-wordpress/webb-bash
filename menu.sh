@@ -42,8 +42,8 @@ read_options(){
     12) add_wpsite_ubuntu;;
     21) init_ssl;;
     22) add_ssl_site;;
-    31) init_ols;;
-    31) get_lsws_info;;
+    # 31) init_ols;;
+    32) get_lsws_info;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2
   esac
