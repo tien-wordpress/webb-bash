@@ -25,8 +25,6 @@ add_wpsite_macos(){
 
 add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
-  # printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
-  # printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
 
   string configTxt=`cat /var/www/html/wp-config.php`
   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
@@ -64,7 +62,7 @@ add_wpsite_ubuntu(){
     wp db drop --yes --allow-root
   } catch {}
   wp db create --allow-root
-  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$admin_user --admin_password=$admin_password --admin_email=tien.wordpress@gmail.com --allow-root
+  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
   wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
   wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
