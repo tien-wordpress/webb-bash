@@ -52,12 +52,11 @@ add_wpsite_ubuntu(){
   printf "\n"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 
-  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
-
   rm -rf $domainPath
   mkdir -p $domainPath
   wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
+  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
   try {
     wp db drop --yes --allow-root
   } catch {}
