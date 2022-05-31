@@ -27,7 +27,8 @@ show_menus(){
 
   printf "$(UI.Color.Yellow)LSWS$(UI.Color.Default)\n"
   {
-    printf "31) Info lwsw\n"
+    printf "31) Init ols\n"
+    printf "32) Info lwsw\n"
   } | pr -t2 -w "$COLUMNS"
 
   printf "$(UI.Color.Red)0) Exit$(UI.Color.Default)\n"
@@ -41,6 +42,7 @@ read_options(){
     12) add_wpsite_ubuntu;;
     21) init_ssl;;
     22) add_ssl_site;;
+    31) init_ols;;
     31) get_lsws_info;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2

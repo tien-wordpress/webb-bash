@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 init_ssl(){
   sudo apt install certbot -y
   read -p "" fackEnterKey

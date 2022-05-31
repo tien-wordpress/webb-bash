@@ -70,3 +70,4 @@ add_wpsite_ubuntu(){
   chmod -R 777 $domainPath/html/wp-content
   read -p "" fackEnterKey
 }
+

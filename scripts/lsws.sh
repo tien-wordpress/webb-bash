@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+init_ols(){
+  wget https://raw.githubusercontent.com/litespeedtech/ols1clk/master/ols1clk.sh -P /root
+  chmod -R 775 /root/ols1clk.sh
+  bash /root/ols1clk.sh
+  read -p "" fackEnterKey
+}
+
 get_lsws_info(){
   lswsAdminUrl="http://$(hostname -I | cut -d' ' -f1):7080/login.php"
   lswsAdminPass=`cat /root/.litespeed_password`
@@ -14,3 +22,4 @@ get_lsws_info(){
 
   read -p "" fackEnterKey
 }
+# sudo /usr/local/lsws/bin/lswsctrl reload
