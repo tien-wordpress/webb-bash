@@ -37,15 +37,15 @@ add_wpsite_ubuntu(){
   dbpass=`echo "${dbpass}" | head -1`
   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
 
-  admin_password=$(String::GenerateUUID)
-  admin_user="webb.vn"
-  DB="${DOMAIN/\./_}_db"
-  domainPath=/usr/local/lsws/$DOMAIN
+  wppassword=$(String::GenerateUUID)
+  wpuser="webb.vn"
+  DB=${DOMAIN//[.]/_}
+  domainPath=/var/www/$DOMAIN
   printf "\n"
   printf "$(UI.Color.Yellow)IMPORTANT$(UI.Color.Default)\n"
   printf "domain: $DOMAIN \n"
-  printf "admin_user: $admin_user \n"
-  printf "admin_password: $admin_password \n"
+  printf "wpuser: $wpuser \n"
+  printf "wppassword: $wppassword \n"
   printf "\n"
   printf "dbuser: $dbuser \n"
   printf "dbpass: $dbpass \n"
@@ -53,9 +53,12 @@ add_wpsite_ubuntu(){
   printf "domainPath: $domainPath \n"
   printf "\n"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+
+  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
+
   rm -rf $domainPath
-  mkdir -p $domainPath/{conf,html,logs}
-  wp core download --path=$domainPath/html --locale=en_US --allow-root; cd $domainPath/html
+  mkdir -p $domainPath
+  wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
   try {
     wp db drop --yes --allow-root
