@@ -70,7 +70,7 @@ add_wpsite_ubuntu(){
   wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
   wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
-  chmod -R 777 $domainPath/html/wp-content
+  chmod -R 777 $domainPath/wp-content
   read -p "" fackEnterKey
 }
 
