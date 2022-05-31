@@ -2,6 +2,7 @@
 
 init_ssl(){
   sudo apt install certbot -y
+  read -p "" fackEnterKey
 }
 
 add_ssl_site(){
@@ -9,7 +10,7 @@ add_ssl_site(){
   rm -rf /etc/letsencrypt/live/$DOMAIN
   domainPath=/usr/local/lsws/$DOMAIN
   sudo certbot certonly --webroot -w $domainPath/html/ -d $DOMAIN <<<$(printf "tien.wordpress@gmail.com\nA\nn\n")
-  printf "/etc/letsencrypt/live/$DOMAIN/fullchain.pem\n"
-  printf "/etc/letsencrypt/live/$DOMAIN/privkey.pem\n"
+  # printf "/etc/letsencrypt/live/$DOMAIN/fullchain.pem\n"
+  # printf "/etc/letsencrypt/live/$DOMAIN/privkey.pem\n"
   read -p "" fackEnterKey
 }
