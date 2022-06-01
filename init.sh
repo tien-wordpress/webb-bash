@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo apt update
-sudo apt install -y jq
+# sudo apt update
+# sudo apt install -y jq
 ufw allow 7080
 
 rm -rf /root/webb-bash;
