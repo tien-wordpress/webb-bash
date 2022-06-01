@@ -40,8 +40,8 @@ read_options(){
   case $choice in
     11) init_wpcli;;
     12)
-      DOMAIN="$(add_wpsite_ubuntu)"
-      printf "DOMAIN: $DOMAIN\n"
+      DOMAIN="$(add_wpsite_ubuntu)";
+      printf "DOMAIN: $DOMAIN\n";
       ;;
 #    21) init_ssl;;
 #    22) add_ssl_site;;
