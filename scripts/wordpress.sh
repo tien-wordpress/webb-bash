@@ -38,7 +38,7 @@ add_wpsite_ssl(){
   local DOMAIN=$1
   try {
     apt-get -y install certbot
-    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
+    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN #-le tien.wordpress@gmail.com -f
     wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
   } catch {}
 }
