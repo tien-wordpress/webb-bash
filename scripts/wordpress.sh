@@ -34,6 +34,7 @@ add_wpbase(){
   wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp plugin install elementor bdthemes-element-pack-lite litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
   wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
+  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
 add_domain_ssl(){
