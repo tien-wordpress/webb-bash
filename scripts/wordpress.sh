@@ -28,7 +28,8 @@ add_wpbase(){
   printf "DOMAIN: 123\n"
   add_wpsite_ubuntu
   # DOMAIN="$(add_wpsite_ubuntu)"
-  printf "DOMAIN: $DOMAIN\n"
+  printf "DOMAIN 2: $DOMAIN\n"
+  read -p "" fackEnterKey
 }
 
 add_wpsite_ubuntu(){
