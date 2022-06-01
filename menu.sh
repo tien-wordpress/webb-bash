@@ -16,7 +16,7 @@ show_menus(){
   printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
   {
     printf "11) Init wp-cli\n"
-    printf "12) Add wordpress base\n"
+    printf "12) Add Wordpress Base (News, Blog)\n"
   } | pr -t2 -w "$COLUMNS"
 
 #  printf "$(UI.Color.Yellow)SSL$(UI.Color.Default)\n"
@@ -40,9 +40,6 @@ read_options(){
   case $choice in
     11) init_wpcli;;
     12) add_wpbase;;
-#    21) init_ssl;;
-#    22) add_ssl_site;;
-    # 31) init_ols;;
     32) get_lsws_info;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2

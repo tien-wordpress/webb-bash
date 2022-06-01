@@ -25,23 +25,22 @@ init_wpcli(){
 
 
 add_wpbase(){
-  printf "DOMAIN: 123\n"
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
   add_wpsite_ubuntu $DOMAIN
-  # add_domain_ssl $DOMAIN
-  # DOMAIN="$(add_wpsite_ubuntu)"
-  printf "DOMAIN 2: $DOMAIN\n"
-  read -p "" fackEnterKey
+  add_domain_ssl $DOMAIN
+  domainPath=/var/www/$DOMAIN
+  cd $domainPath
+  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
+  wp plugin install elementor bdthemes-element-pack-lite litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
+  wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
 }
 
 add_domain_ssl(){
   local DOMAIN=$1
   try {
-    apt-get -y install certbot
-    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d webb.vn
-    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN
-    #-le tien.wordpress@gmail.com -f
-    # wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
+    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
+    wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
   } catch {}
 }
 
@@ -52,9 +51,6 @@ add_wpsite_ubuntu(){
   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
   dbuser=`echo "${dbuser}" | head -1`
   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
-#   printf "dbuser: $dbuser"
-# read -p "" fackEnterKey
-# return $DOMAIN
   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
   dbpass=`echo "${dbpass}" | head -1`
   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
@@ -86,13 +82,9 @@ add_wpsite_ubuntu(){
   } catch {}
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
-#  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
 #  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
 #  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
 #  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
   chmod -R 777 $domainPath/wp-content
- read -p "" fackEnterKey
-#   # return $DOMAIN
 }
-
