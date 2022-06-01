@@ -32,6 +32,7 @@ add_wpbase(){
 }
 
 add_wpsite_ubuntu(){
+  local DOMAIN
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 
   string configTxt=`cat /var/www/html/wp-config.php`
