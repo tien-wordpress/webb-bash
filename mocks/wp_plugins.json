@@ -1,0 +1,43 @@
+[
+  {
+    "name": "meta-box"
+  },
+  {
+    "name": "post-duplicator"
+  },
+  {
+    "name": "post-types-order"
+  },
+  {
+    "name": "elementor"
+  },
+  {
+    "name": "elementor-pro",
+    "source": "/root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip"
+  },
+  {
+    "name": "all-in-one-wp-migration"
+  },
+  {
+    "name": "string-locator"
+  },
+  {
+    "name": "the-paste"
+  },
+  {
+    "name": "bdthemes-element-pack-lite"
+  },
+  {
+    "name": "litespeed-cache"
+  },
+  {
+    "name": "custom-post-type-ui"
+  },
+  {
+    "name": "advanced-custom-fields"
+  },
+  {
+    "name": "codeby-core",
+    "source": "https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip"
+  }
+]

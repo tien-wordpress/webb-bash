@@ -11,17 +11,17 @@ init_wpcli(){
   read -p "" fackEnterKey
 }
 
-add_wpsite_macos(){
-  printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
-  printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
-  printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
-  DB="${DOMAIN/\./_}_db"
-  wp core download --path=$DOMAIN --locale=en_US; cd $DOMAIN
-  wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass
-  wp db create
-  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=tienwp_asd --admin_password=tienwp_asd --admin_email=tien.wordpress@gmail.com
-  read -p "" fackEnterKey
-}
+#add_wpsite_macos(){
+#  printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
+#  printf "$(UI.Color.Yellow)DB user (root):$(UI.Color.Default)"; read dbuser
+#  printf "$(UI.Color.Yellow)DB pass (root):$(UI.Color.Default)"; read dbpass
+#  DB="${DOMAIN/\./_}_db"
+#  wp core download --path=$DOMAIN --locale=en_US; cd $DOMAIN
+#  wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass
+#  wp db create
+#  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=tienwp_asd --admin_password=tienwp_asd --admin_email=tien.wordpress@gmail.com
+#  read -p "" fackEnterKey
+#}
 
 add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
@@ -63,12 +63,13 @@ add_wpsite_ubuntu(){
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
   wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
-  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
-  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
-  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
-  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
+#  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+#  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
+#  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
+#  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
   chmod -R 777 $domainPath/wp-content
-  read -p "" fackEnterKey
+#  read -p "" fackEnterKey
+  return $DOMAIN
 }
 
