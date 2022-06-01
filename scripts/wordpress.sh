@@ -28,7 +28,7 @@ add_wpbase(){
   printf "DOMAIN: 123\n"
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
   add_wpsite_ubuntu $DOMAIN
-  add_domain_ssl $DOMAIN
+  # add_domain_ssl $DOMAIN
   # DOMAIN="$(add_wpsite_ubuntu)"
   printf "DOMAIN 2: $DOMAIN\n"
   read -p "" fackEnterKey
