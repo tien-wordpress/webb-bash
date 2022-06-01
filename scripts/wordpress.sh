@@ -23,6 +23,12 @@ init_wpcli(){
 #  read -p "" fackEnterKey
 #}
 
+
+add_wpbase(){
+  DOMAIN="$(add_wpsite_ubuntu)";
+  printf "DOMAIN: $DOMAIN\n";
+}
+
 add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 

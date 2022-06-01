@@ -16,7 +16,7 @@ show_menus(){
   printf "$(UI.Color.Yellow)WORDPRESS$(UI.Color.Default)\n"
   {
     printf "11) Init wp-cli\n"
-    printf "12) Add wordpress site\n"
+    printf "12) Add wordpress base\n"
   } | pr -t2 -w "$COLUMNS"
 
 #  printf "$(UI.Color.Yellow)SSL$(UI.Color.Default)\n"
@@ -39,10 +39,7 @@ read_options(){
   read -p "Enter choice: " choice
   case $choice in
     11) init_wpcli;;
-    12)
-      DOMAIN="$(add_wpsite_ubuntu)";
-      printf "DOMAIN: $DOMAIN\n";
-      ;;
+    12) add_wpbase;;
 #    21) init_ssl;;
 #    22) add_ssl_site;;
     # 31) init_ols;;
