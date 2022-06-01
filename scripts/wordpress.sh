@@ -38,6 +38,7 @@ add_domain_ssl(){
   local DOMAIN=$1
   try {
     apt-get -y install certbot
+    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d webb.vn
     /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN
     #-le tien.wordpress@gmail.com -f
     # wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
@@ -77,6 +78,7 @@ add_wpsite_ubuntu(){
 
   rm -rf $domainPath
   mkdir -p $domainPath
+  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN
   wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
   try {
