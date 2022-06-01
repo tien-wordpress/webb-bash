@@ -26,16 +26,15 @@ init_wpcli(){
 
 add_wpbase(){
   printf "DOMAIN: 123\n"
-  add_wpsite_ubuntu
+  printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
+  add_wpsite_ubuntu $DOMAIN
   # DOMAIN="$(add_wpsite_ubuntu)"
-  printf "DOMAIN 2: $?\n"
+  printf "DOMAIN 2: $DOMAIN\n"
   read -p "" fackEnterKey
 }
 
 add_wpsite_ubuntu(){
-  # local DOMAIN
-  printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
-
+  local DOMAIN=$1
   printf "DOMAIN: $DOMAIN"
   string configTxt=`cat /var/www/html/wp-config.php`
   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
