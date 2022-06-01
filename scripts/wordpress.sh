@@ -28,9 +28,18 @@ add_wpbase(){
   printf "DOMAIN: 123\n"
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
   add_wpsite_ubuntu $DOMAIN
+  add_wpsite_ssl $DOMAIN
   # DOMAIN="$(add_wpsite_ubuntu)"
   printf "DOMAIN 2: $DOMAIN\n"
   read -p "" fackEnterKey
+}
+
+add_wpsite_ssl(){
+  local DOMAIN=$1
+  try {
+    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
+    wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
+  } catch {}
 }
 
 add_wpsite_ubuntu(){
@@ -68,13 +77,11 @@ add_wpsite_ubuntu(){
   mkdir -p $domainPath
   wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
-  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
   try {
     wp db drop --yes --allow-root
   } catch {}
   wp db create --allow-root
   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
-  wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
 #  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
 #  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
 #  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
