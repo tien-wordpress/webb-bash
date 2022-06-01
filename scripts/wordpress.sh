@@ -48,7 +48,6 @@ add_domain_ssl(){
 
 add_wpsite_ubuntu(){
   local DOMAIN=$1
-  printf "DOMAIN: $DOMAIN"
   string configTxt=`cat /var/www/html/wp-config.php`
   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
   dbuser=`echo "${dbuser}" | head -1`
