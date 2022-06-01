@@ -28,12 +28,12 @@ add_wpbase(){
   printf "DOMAIN: 123\n"
   add_wpsite_ubuntu
   # DOMAIN="$(add_wpsite_ubuntu)"
-  printf "DOMAIN 2: $DOMAIN\n"
+  printf "DOMAIN 2: $?\n"
   read -p "" fackEnterKey
 }
 
 add_wpsite_ubuntu(){
-  local DOMAIN
+  # local DOMAIN
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 
   printf "DOMAIN: $DOMAIN"
@@ -43,6 +43,7 @@ add_wpsite_ubuntu(){
   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
   printf "DOMAIN: $DOMAIN"
 read -p "" fackEnterKey
+return $DOMAIN
 #   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
 #   dbpass=`echo "${dbpass}" | head -1`
 #   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
