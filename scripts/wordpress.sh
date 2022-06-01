@@ -25,8 +25,9 @@ init_wpcli(){
 
 
 add_wpbase(){
-  DOMAIN="$(add_wpsite_ubuntu)";
-  printf "DOMAIN: $DOMAIN\n";
+  printf "DOMAIN: 123\n"
+  DOMAIN="$(add_wpsite_ubuntu)"
+  printf "DOMAIN: $DOMAIN\n"
 }
 
 add_wpsite_ubuntu(){
