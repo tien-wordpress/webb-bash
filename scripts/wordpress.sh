@@ -26,7 +26,8 @@ init_wpcli(){
 
 add_wpbase(){
   printf "DOMAIN: 123\n"
-  DOMAIN="$(add_wpsite_ubuntu)"
+  add_wpsite_ubuntu
+  # DOMAIN="$(add_wpsite_ubuntu)"
   printf "DOMAIN: $DOMAIN\n"
 }
 
@@ -77,6 +78,6 @@ add_wpsite_ubuntu(){
   wp config set FS_METHOD 'direct' --allow-root
   chmod -R 777 $domainPath/wp-content
 #  read -p "" fackEnterKey
-  return $DOMAIN
+  # return $DOMAIN
 }
 
