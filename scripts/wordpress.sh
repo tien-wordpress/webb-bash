@@ -21,7 +21,7 @@ init_wpcli(){
 #  wp db create
 #  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=tienwp_asd --admin_password=tienwp_asd --admin_email=tien.wordpress@gmail.com
 #  read -p "" fackEnterKey
-#}
+#}test2.webb.vn
 
 
 add_wpbase(){
@@ -34,6 +34,7 @@ add_wpbase(){
   wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp plugin install elementor bdthemes-element-pack-lite litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
   wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
+  chmod -R 775 $domainPath/wp-content
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
@@ -87,5 +88,4 @@ add_wpsite_ubuntu(){
 #  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
 #  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   wp config set FS_METHOD 'direct' --allow-root
-  chmod -R 777 $domainPath/wp-content
 }
