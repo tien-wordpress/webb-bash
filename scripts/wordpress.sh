@@ -41,7 +41,7 @@ add_wpsite_ubuntu(){
   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
   dbuser=`echo "${dbuser}" | head -1`
   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
-  printf "DOMAIN: $DOMAIN"
+  printf "dbuser: $dbuser"
 read -p "" fackEnterKey
 return $DOMAIN
 #   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
