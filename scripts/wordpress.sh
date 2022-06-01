@@ -42,7 +42,7 @@ add_wpsite_ubuntu(){
   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
   printf "dbuser: $dbuser"
 read -p "" fackEnterKey
-return $DOMAIN
+# return $DOMAIN
 #   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
 #   dbpass=`echo "${dbpass}" | head -1`
 #   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
