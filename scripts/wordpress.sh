@@ -36,10 +36,10 @@ add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 
   string configTxt=`cat /var/www/html/wp-config.php`
-  printf "configTxt: $configTxt"
-#   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
-#   dbuser=`echo "${dbuser}" | head -1`
-#   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
+  string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
+  dbuser=`echo "${dbuser}" | head -1`
+  dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
+  printf "dbuser: $dbuser"
 
 #   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
 #   dbpass=`echo "${dbpass}" | head -1`
