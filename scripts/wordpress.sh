@@ -36,49 +36,50 @@ add_wpsite_ubuntu(){
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 
   string configTxt=`cat /var/www/html/wp-config.php`
-  string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
-  dbuser=`echo "${dbuser}" | head -1`
-  dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
+  printf "configTxt: $configTxt"
+#   string dbuser=$($var:configTxt match 'DB_USER(.+)' 1)
+#   dbuser=`echo "${dbuser}" | head -1`
+#   dbuser=$($var:dbuser match '[a-zA-Z0-9]+' 0)
 
-  string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
-  dbpass=`echo "${dbpass}" | head -1`
-  dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
+#   string dbpass=$($var:configTxt match 'DB_PASSWORD(.+)' 1)
+#   dbpass=`echo "${dbpass}" | head -1`
+#   dbpass=$($var:dbpass match '[a-zA-Z0-9]+' 0)
 
-  wppassword=$(String::GenerateUUID)
-  wpuser="webb.vn"
-  DB=${DOMAIN//[.]/_}
-  domainPath=/var/www/$DOMAIN
-  printf "\n"
-  printf "$(UI.Color.Yellow)IMPORTANT$(UI.Color.Default)\n"
-  printf "domain: $DOMAIN \n"
-  printf "wpuser: $wpuser \n"
-  printf "wppassword: $wppassword \n"
-  printf "\n"
-  printf "dbuser: $dbuser \n"
-  printf "dbpass: $dbpass \n"
-  printf "DB: $DB \n"
-  printf "domainPath: $domainPath \n"
-  printf "\n"
-  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+#   wppassword=$(String::GenerateUUID)
+#   wpuser="webb.vn"
+#   DB=${DOMAIN//[.]/_}
+#   domainPath=/var/www/$DOMAIN
+#   printf "\n"
+#   printf "$(UI.Color.Yellow)IMPORTANT$(UI.Color.Default)\n"
+#   printf "domain: $DOMAIN \n"
+#   printf "wpuser: $wpuser \n"
+#   printf "wppassword: $wppassword \n"
+#   printf "\n"
+#   printf "dbuser: $dbuser \n"
+#   printf "dbpass: $dbpass \n"
+#   printf "DB: $DB \n"
+#   printf "domainPath: $domainPath \n"
+#   printf "\n"
+#   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 
-  rm -rf $domainPath
-  mkdir -p $domainPath
-  wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
-  wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
-  /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
-  try {
-    wp db drop --yes --allow-root
-  } catch {}
-  wp db create --allow-root
-  wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
-  wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
-#  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
-#  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
-#  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
-#  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
-  wp config set FS_METHOD 'direct' --allow-root
-  chmod -R 777 $domainPath/wp-content
-#  read -p "" fackEnterKey
-  # return $DOMAIN
+#   rm -rf $domainPath
+#   mkdir -p $domainPath
+#   wp core download --path=$domainPath --locale=en_US --allow-root; cd $domainPath
+#   wp config create --dbname=$DB --dbuser=$dbuser --dbpass=$dbpass --allow-root
+#   /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
+#   try {
+#     wp db drop --yes --allow-root
+#   } catch {}
+#   wp db create --allow-root
+#   wp core install --url=$DOMAIN --title="$DOMAIN title" --admin_user=$wpuser --admin_password=$wppassword --admin_email=tien.wordpress@gmail.com --allow-root
+#   wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
+# #  wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+# #  wp plugin install https://downloads.wordpress.org/plugin/litespeed-cache.4.6.zip --activate --allow-root
+# #  wp plugin install /root/webb-bash/assets/elementor-kit.zip --activate --allow-root
+# #  wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
+#   wp config set FS_METHOD 'direct' --allow-root
+#   chmod -R 777 $domainPath/wp-content
+# #  read -p "" fackEnterKey
+#   # return $DOMAIN
 }
 
