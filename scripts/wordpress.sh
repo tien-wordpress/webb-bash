@@ -74,6 +74,7 @@ add_wpmulti(){
   # wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
   # wp plugin install bdthemes-element-pack-lite --activate --allow-root
   chmod -R 777 $domainPath/wp-content
+  read -p "https://$DOMAIN/wp-admin/network.php\n"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
