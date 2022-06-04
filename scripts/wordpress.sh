@@ -46,12 +46,12 @@ add_wpmulti(){
   domainPath=/var/www/$DOMAIN
   cd $domainPath
   wp config set WP_ALLOW_MULTISITE true --raw --allow-root
-  wp config set MULTISITE true --raw --allow-root
-  wp config set SUBDOMAIN_INSTALL false --raw --allow-root
-  wp config set DOMAIN_CURRENT_SITE $DOMAIN --allow-root
-  wp config set PATH_CURRENT_SITE '/' --allow-root
-  wp config set SITE_ID_CURRENT_SITE 1 --allow-root
-  wp config set BLOG_ID_CURRENT_SITE 1 --allow-root
+  # wp config set MULTISITE true --raw --allow-root
+  # wp config set SUBDOMAIN_INSTALL false --raw --allow-root
+  # wp config set DOMAIN_CURRENT_SITE $DOMAIN --allow-root
+  # wp config set PATH_CURRENT_SITE '/' --allow-root
+  # wp config set SITE_ID_CURRENT_SITE 1 --allow-root
+  # wp config set BLOG_ID_CURRENT_SITE 1 --allow-root
 
 # printf "RewriteEngine On
 # RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
