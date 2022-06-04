@@ -46,6 +46,28 @@ add_wpmulti(){
   domainPath=/var/www/$DOMAIN
   cd $domainPath
   wp config set WP_ALLOW_MULTISITE true --raw --allow-root
+  wp config set MULTISITE true --raw --allow-root
+  wp config set SUBDOMAIN_INSTALL false --raw --allow-root
+  wp config set DOMAIN_CURRENT_SITE '$DOMAIN' --allow-root
+  wp config set PATH_CURRENT_SITE '/' --allow-root
+  wp config set SITE_ID_CURRENT_SITE 1 --allow-root
+  wp config set BLOG_ID_CURRENT_SITE 1 --allow-root
+
+printf "RewriteEngine On\n
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]\n
+RewriteBase /\n
+RewriteRule ^index\.php$ - [L]\n
+
+# add a trailing slash to /wp-admin\n
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]\n
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]\n
+RewriteCond %{REQUEST_FILENAME} -d\n
+RewriteRule ^ - [L]\n
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]\n
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]\n
+RewriteRule . index.php [L]\n" >> $domainPath/.htaccess
+
   # wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
   # wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
   # wp plugin install elementor litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
