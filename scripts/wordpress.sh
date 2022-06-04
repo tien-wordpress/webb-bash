@@ -39,6 +39,22 @@ add_wpbase(){
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
+add_wpmulti(){
+  printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
+  add_wpsite_ubuntu $DOMAIN
+  add_domain_ssl $DOMAIN
+  domainPath=/var/www/$DOMAIN
+  cd $domainPath
+  wp config set WP_ALLOW_MULTISITE true --raw --allow-root
+  # wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
+  # wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
+  # wp plugin install elementor litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
+  # wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
+  # wp plugin install bdthemes-element-pack-lite --activate --allow-root
+  chmod -R 777 $domainPath/wp-content
+  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+}
+
 add_domain_ssl(){
   local DOMAIN=$1
   try {
