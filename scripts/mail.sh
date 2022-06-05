@@ -42,4 +42,6 @@ mail($to,$subject,$message, $headers);\n
 echo "Test email sent";\n
 ' >> /root/php_mail_test.php
 /usr/local/lsws/lsphp80/bin/php /root/php_mail_test.php
+
+read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
