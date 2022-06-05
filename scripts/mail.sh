@@ -2,7 +2,7 @@
 setup_mailjet(){
   sudo apt install msmtp msmtp-mta -y
   printf "$(UI.Color.Blue)https://app.mailjet.com/signin$(UI.Color.Default)\n"
-  printf "tiennv.ppe@gmail.com / Pa$$w0rd!\n"
+  printf "tiennv.ppe@gmail.com / Pa\$\$w0rd!\n"
   printf "tien.codeby@gmail.com / mmVT123!@#\n"
   printf "$(UI.Color.Blue)Add domain$(UI.Color.Default)\n"
   printf "https://app.mailjet.com/account/sender/domain\n"
