@@ -32,6 +32,12 @@ show_menus(){
     printf "32) Info lwsw\n"
   } | pr -t2 -w "$COLUMNS"
 
+  printf "$(UI.Color.Yellow)Mail$(UI.Color.Default)\n"
+  {
+#    printf "31) Init ols\n"
+    printf "41) Setup Mailjet\n"
+  } | pr -t2 -w "$COLUMNS"
+
   printf "$(UI.Color.Red)0) Exit$(UI.Color.Default)\n"
 }
 
