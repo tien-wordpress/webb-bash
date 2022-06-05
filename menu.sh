@@ -6,6 +6,7 @@ import util/exception
 import scripts/wordpress
 import scripts/ssl
 import scripts/lsws
+import scripts/mail
 
 show_menus(){
   COLUMNS=$(tput cols)
@@ -49,6 +50,7 @@ read_options(){
     12) add_wpbase;;
     13) add_wpmulti;;
     32) get_lsws_info;;
+    41) setup_mailjet;;
     0) exit 0;;
     *) printf "$(UI.Color.Red)Error...$(UI.Color.Default)" && sleep 2
   esac
