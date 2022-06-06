@@ -7,3 +7,5 @@ my_function () {
 
 func_result="$(my_function)"
 echo $func_result
+anothervalue
+

@@ -14,34 +14,34 @@ printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
 printf "$(UI.Color.Yellow)API KEY:$(UI.Color.Default)"; read API_KEY
 printf "$(UI.Color.Yellow)SECRET KEY:$(UI.Color.Default)"; read SECRET_KEY
 
-printf "defaults\n
-auth on\n
-tls on\n
-tls_trust_file /etc/ssl/certs/ca-certificates.crt\n
-account mail\n
-host in-v3.mailjet.com\n
-port 587\n
-from support@$DOMAIN\n
-user $API_KEY\n
-password $SECRET_KEY\n
+printf "defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+account mail
+host in-v3.mailjet.com
+port 587
+from support@$DOMAIN
+user $API_KEY
+password $SECRET_KEY
 account default : mail" >> /etc/msmtprc
 sudo chown nobody /etc/msmtprc
-sudo chmod 600 /etc/msmtprc
-sed '/sendmail_path/a sendmail_path="/usr/bin/msmtp -C /etc/msmtprc -t"' /usr/local/lsws/lsphp80/etc/php/8.0/litespeed/php.ini
+sudo chmod 755 /etc/msmtprc
+sed -i '/sendmail_path/a sendmail_path="/usr/bin/msmtp -C /etc/msmtprc -t"' /usr/local/lsws/lsphp80/etc/php/8.0/litespeed/php.ini
 sudo /usr/local/lsws/bin/lswsctrl reload
 
 
 printf "#! /usr/bin/php
-<?php\n
-ini_set('display_errors', 1 );\n
-error_reporting( E_ALL );\n
-\$from = 'support@$DOMAIN';\n
-\$to = '123dinhcao@gmail.com';\n
-\$subject = 'PHP Mail Test';\n
-\$message = 'Testing PHP Mail functionality';\n
-\$headers = 'From:' . \$from;\n
-mail(\$to, \$subject, \$message, \$headers);\n
-echo 'Test email sent';\n
+<?php
+ini_set('display_errors', 1 );
+error_reporting( E_ALL );
+\$from = 'support@$DOMAIN';
+\$to = '123dinhcao@gmail.com';
+\$subject = 'PHP Mail Test';
+\$message = 'Testing PHP Mail functionality';
+\$headers = 'From:' . \$from;
+mail(\$to, \$subject, \$message, \$headers);
+echo 'Test email sent';
 " >> /root/php_mail_test.php
 /usr/local/lsws/lsphp80/bin/php /root/php_mail_test.php
 
