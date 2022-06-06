@@ -6,6 +6,8 @@ setup_mailjet(){
   printf "tien.codeby@gmail.com / mmVT123!@#\n"
   printf "$(UI.Color.Blue)Add domain$(UI.Color.Default)\n"
   printf "https://app.mailjet.com/account/sender/domain\n"
+  printf "$(UI.Color.Blue)Cloudflare$(UI.Color.Default)\n"
+  printf "https://dash.cloudflare.com\n"
   printf "$(UI.Color.Blue)Api key$(UI.Color.Default)\n"
   printf "https://app.mailjet.com/account/apikeys\n"
   printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
@@ -29,18 +31,18 @@ sed '/sendmail_path/a sendmail_path="/usr/bin/msmtp -C /etc/msmtprc -t"' /usr/lo
 sudo /usr/local/lsws/bin/lswsctrl reload
 
 
-printf '#! /usr/bin/php
+printf "#! /usr/bin/php
 <?php\n
-ini_set( "display_errors", 1 );\n
+ini_set('display_errors', 1 );\n
 error_reporting( E_ALL );\n
-$from = "support@$DOMAIN";\n
-$to = "123dinhcao@gmail.com";\n
-$subject = "PHP Mail Test";\n
-$message = "Testing PHP Mail functionality";\n
-$headers = "From:" . $from;\n
-mail($to,$subject,$message, $headers);\n
-echo "Test email sent";\n
-' >> /root/php_mail_test.php
+\$from = 'support@$DOMAIN';\n
+\$to = '123dinhcao@gmail.com';\n
+\$subject = 'PHP Mail Test';\n
+\$message = 'Testing PHP Mail functionality';\n
+\$headers = 'From:' . \$from;\n
+mail(\$to, \$subject, \$message, \$headers);\n
+echo 'Test email sent';\n
+" >> /root/php_mail_test.php
 /usr/local/lsws/lsphp80/bin/php /root/php_mail_test.php
 
 read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
