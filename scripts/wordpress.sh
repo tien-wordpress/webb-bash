@@ -51,13 +51,22 @@ add_wpmulti(){
   # printf "vi /var/www/$DOMAIN/wp-config.php\n"
   # printf "vi /var/www/$DOMAIN/.htaccess\n$(UI.Color.Default)"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
-printf -v wpconfig "define( 'MULTISITE', true );
+# printf -v wpconfig "define( 'MULTISITE', true );
+# define( 'SUBDOMAIN_INSTALL', false );
+# define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
+# define( 'PATH_CURRENT_SITE', '/' );
+# define( 'SITE_ID_CURRENT_SITE', 1 );
+# define( 'BLOG_ID_CURRENT_SITE', 1 );"
+# sed -i "/WP_ALLOW_MULTISITE/a ${wpconfig}" /var/www/dienminhphu.com/wp-config.php
+sed '/WP_ALLOW_MULTISITE/r'<(cat <<EOF
+define( 'MULTISITE', true );
 define( 'SUBDOMAIN_INSTALL', false );
 define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
 define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
-define( 'BLOG_ID_CURRENT_SITE', 1 );"
-sed -i "/WP_ALLOW_MULTISITE/a ${wpconfig}" /var/www/dienminhphu.com/wp-config.php
+define( 'BLOG_ID_CURRENT_SITE', 1 );
+EOF
+) -i -- /var/www/dienminhphu.com/wp-config.php
 read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
