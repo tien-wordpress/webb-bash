@@ -1,12 +1,11 @@
 #!/bin/bash
 
-my_function () {
-  local func_result="some result"
-  echo "$func_result"
-}
+printf -v wpconfig "define( 'MULTISITE', true );
+define( 'MULTISITE', true );"
 
-func_result= printf "a
-b
-c"
-echo "aa$func_result"
+echo "1 $wpconfig"
 
+# printf -v framename "define( 'MULTISITE', true );
+# define( 'MULTISITE', true );"
+
+# echo "2 $framename"
