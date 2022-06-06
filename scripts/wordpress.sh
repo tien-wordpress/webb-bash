@@ -62,6 +62,13 @@ define( 'BLOG_ID_CURRENT_SITE', 1 );
 EOF
 ) -i -- /var/www/$DOMAIN/wp-config.php
 
+cat <<EOF >> /var/www/dienminhphu.com/.htaccess
+some lines
+of text
+EOF
+
+
+
 #cat <<EOF
 #define( 'MULTISITE', true );
 #define( 'SUBDOMAIN_INSTALL', false );
