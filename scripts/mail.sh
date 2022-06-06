@@ -11,6 +11,7 @@ printf "https://dash.cloudflare.com\n"
 printf "$(UI.Color.Blue)Api key$(UI.Color.Default)\n"
 printf "https://app.mailjet.com/account/apikeys\n"
 printf "$(UI.Color.Yellow)Domain (webb.vn):$(UI.Color.Default)"; read DOMAIN
+sed -r "s/DOMAIN/$DOMAIN/" /root/webb-bash/assets/cloudflare-record.txt
 printf "$(UI.Color.Yellow)API KEY:$(UI.Color.Default)"; read API_KEY
 printf "$(UI.Color.Yellow)SECRET KEY:$(UI.Color.Default)"; read SECRET_KEY
 

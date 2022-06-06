@@ -1,4 +1,4 @@
 ;; TXT Records
-mailjet._b2d2ee00.hoiansmiletours.com.	1	IN	TXT	"b2d2ee00c02de797a526d2db20208c6d"
-mailjet._domainkey.hoiansmiletours.com.	1	IN	TXT	""
-hoiansmiletours.com.	1	IN	TXT	"b2d2ee00c02de797a526d2db20208c6d.txt"
+DOMAIN.	1	IN	TXT	""
+mailjet._b2d2ee00.DOMAIN.	1	IN	TXT	""
+mailjet._domainkey.DOMAIN.	1	IN	TXT	""
