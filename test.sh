@@ -15,10 +15,12 @@
 # define( 'MULTISITE', true );") -- z.txt
 
 sed '/WP_ALLOW_MULTISITE/r'<(cat <<EOF
-line1
-line2
-line3
-line4
+define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false );
+define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
 EOF
 ) -i z.txt
 
