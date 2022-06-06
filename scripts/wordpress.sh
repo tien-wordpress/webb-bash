@@ -48,7 +48,7 @@ add_wpmulti(){
   wp config set WP_ALLOW_MULTISITE true --raw --allow-root
   chmod -R 777 $domainPath/wp-content
   printf "$(UI.Color.Yellow)https://$DOMAIN/wp-admin/network.php\n"
-  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+  read -p "$(UI.Color.Blue)wp-config.php, .htaccess\nEnter to continue$(UI.Color.Default)" fackEnterKey
 
 sed '/WP_ALLOW_MULTISITE/r'<(cat <<EOF
 define( 'MULTISITE', true );
@@ -88,7 +88,7 @@ EOF
 #define( 'BLOG_ID_CURRENT_SITE', 1 );
 #EOF  >> /var/www/dienminhphu.com/.htaccess
 
-read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+#read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
 add_domain_ssl(){
