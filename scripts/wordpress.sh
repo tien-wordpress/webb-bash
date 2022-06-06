@@ -51,13 +51,7 @@ add_wpmulti(){
   # printf "vi /var/www/$DOMAIN/wp-config.php\n"
   # printf "vi /var/www/$DOMAIN/.htaccess\n$(UI.Color.Default)"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
-# printf -v wpconfig "define( 'MULTISITE', true );
-# define( 'SUBDOMAIN_INSTALL', false );
-# define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
-# define( 'PATH_CURRENT_SITE', '/' );
-# define( 'SITE_ID_CURRENT_SITE', 1 );
-# define( 'BLOG_ID_CURRENT_SITE', 1 );"
-# sed -i "/WP_ALLOW_MULTISITE/a ${wpconfig}" /var/www/dienminhphu.com/wp-config.php
+
 sed '/WP_ALLOW_MULTISITE/r'<(cat <<EOF
 define( 'MULTISITE', true );
 define( 'SUBDOMAIN_INSTALL', false );
@@ -66,16 +60,28 @@ define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
 define( 'BLOG_ID_CURRENT_SITE', 1 );
 EOF
-) -i -- /var/www/dienminhphu.com/wp-config.php
+) -i -- /var/www/$DOMAIN/wp-config.php
+
+(cat <<EOF
+define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false );
+define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
+EOF
+) >> -- /var/www/dienminhphu.com/.htaccess
+
 read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
 add_domain_ssl(){
-  local DOMAIN=$1
+  local DOMAIN=$1;
   try {
-    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f
-    wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root
-  } catch {}
+    /bin/bash <( curl -sk https://raw.githubusercontent.com/litespeedtech/ls-cloud-image/master/Setup/vhsetup.sh ) -d $DOMAIN -le tien.wordpress@gmail.com -f;
+    wp search-replace "http://$DOMAIN" "https://$DOMAIN" --allow-root;
+  }
+  catch {}
 }
 
 add_wpsite_ubuntu(){
