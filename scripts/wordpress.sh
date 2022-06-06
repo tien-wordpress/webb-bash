@@ -48,8 +48,6 @@ add_wpmulti(){
   wp config set WP_ALLOW_MULTISITE true --raw --allow-root
   chmod -R 777 $domainPath/wp-content
   printf "$(UI.Color.Yellow)https://$DOMAIN/wp-admin/network.php\n"
-  # printf "vi /var/www/$DOMAIN/wp-config.php\n"
-  # printf "vi /var/www/$DOMAIN/.htaccess\n$(UI.Color.Default)"
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 
 sed '/WP_ALLOW_MULTISITE/r'<(cat <<EOF
@@ -62,9 +60,21 @@ define( 'BLOG_ID_CURRENT_SITE', 1 );
 EOF
 ) -i -- /var/www/$DOMAIN/wp-config.php
 
-cat <<EOF >> /var/www/dienminhphu.com/.htaccess
-some lines
-of text
+cat <<EOF >> /var/www/$DOMAIN/.htaccess
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
+RewriteRule . index.php [L]
 EOF
 
 
