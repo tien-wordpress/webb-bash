@@ -1,0 +1,4 @@
+;; TXT Records
+mscshop.vn.     1       IN      TXT     "323cc1c3ac163b0dc74bafd61b19d00d.txt"
+mailjet._323cc1c3.mscshop.vn.   1       IN      TXT     "323cc1c3ac163b0dc74bafd61b19d00d"
+mailjet._domainkey.mscshop.vn.  1       IN      TXT     ""

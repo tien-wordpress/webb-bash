@@ -46,37 +46,19 @@ add_wpmulti(){
   domainPath=/var/www/$DOMAIN
   cd $domainPath
   wp config set WP_ALLOW_MULTISITE true --raw --allow-root
-  # wp config set MULTISITE true --raw --allow-root
-  # wp config set SUBDOMAIN_INSTALL false --raw --allow-root
-  # wp config set DOMAIN_CURRENT_SITE $DOMAIN --allow-root
-  # wp config set PATH_CURRENT_SITE '/' --allow-root
-  # wp config set SITE_ID_CURRENT_SITE 1 --allow-root
-  # wp config set BLOG_ID_CURRENT_SITE 1 --allow-root
-
-# printf "RewriteEngine On
-# RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-# RewriteBase /
-# RewriteRule ^index\.php$ - [L]
-
-# # add a trailing slash to /wp-admin
-# RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
-
-# RewriteCond %{REQUEST_FILENAME} -f [OR]
-# RewriteCond %{REQUEST_FILENAME} -d
-# RewriteRule ^ - [L]
-# RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
-# RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
-# RewriteRule . index.php [L]" >> $domainPath/.htaccess
-
-  # wp plugin install https://github.com/nguyenshort/codeby-core/archive/refs/heads/master.zip --activate --allow-root
-  # wp plugin install /root/webb-bash/assets/elementor-pro-zalo-duy-riba.zip --activate --allow-root
-  # wp plugin install elementor litespeed-cache custom-post-type-ui advanced-custom-fields --activate --allow-root
-  # wp plugin install post-duplicator post-types-order all-in-one-wp-migration string-locator the-paste --activate --allow-root
-  # wp plugin install bdthemes-element-pack-lite --activate --allow-root
   chmod -R 777 $domainPath/wp-content
   printf "$(UI.Color.Yellow)https://$DOMAIN/wp-admin/network.php\n"
-  printf "vi /var/www/$DOMAIN/wp-config.php\n"
-  printf "vi /var/www/$DOMAIN/.htaccess\n$(UI.Color.Default)"
+  # printf "vi /var/www/$DOMAIN/wp-config.php\n"
+  # printf "vi /var/www/$DOMAIN/.htaccess\n$(UI.Color.Default)"
+  read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
+wpconfig= printf "define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false );
+define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );"
+# sed -i "/sendmail_path/a "
+  sed -i '/WP_ALLOW_MULTISITE/a $wpconfig' /var/www/$DOMAIN/wp-config.php
   read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 

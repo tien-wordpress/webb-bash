@@ -5,7 +5,8 @@ my_function () {
   echo "$func_result"
 }
 
-func_result="$(my_function)"
-echo $func_result
-anothervalue
+func_result= printf "a
+b
+c"
+echo "aa$func_result"
 
