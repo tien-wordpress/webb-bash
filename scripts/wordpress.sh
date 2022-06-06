@@ -57,7 +57,7 @@ define( 'DOMAIN_CURRENT_SITE', '$DOMAIN' );
 define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
 define( 'BLOG_ID_CURRENT_SITE', 1 );"
-sed -i "/WP_ALLOW_MULTISITE/a $wpconfig" /var/www/$DOMAIN/wp-config.php
+sed -i "/WP_ALLOW_MULTISITE/a ${wpconfig}" /var/www/dienminhphu.com/wp-config.php
 read -p "$(UI.Color.Blue)Enter to continue$(UI.Color.Default)" fackEnterKey
 }
 
