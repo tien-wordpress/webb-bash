@@ -1,6 +1,11 @@
 # setup for Ubuntu 20.04
+## init
 ```
 source <(curl -s https://raw.githubusercontent.com/tien-wordpress/webb-bash/main/init.sh)
+```
+## update
+```
+source <(curl -s https://raw.githubusercontent.com/tien-wordpress/webb-bash/main/update.sh)
 ```
 
 find ./test.webb.vn/ -type f -exec sed -i '' 's#webb.vn#test.webb.vn#' * {} \;
